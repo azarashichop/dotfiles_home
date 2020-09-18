@@ -215,9 +215,6 @@ if dein#load_state('~/.vim/dein/.')
   "Lightline（ステータスライン装飾プラグイン）
   call dein#add('itchyny/lightline.vim')
 
-  "vim-toolbar-icons-silk（gvimのツールバーアイコンをモダンに）
-  call dein#add('istepura/vim-toolbar-icons-silk')
-
   "showtime.vim（プレゼン資料作成）
   call dein#add('thinca/vim-showtime')
 
@@ -226,7 +223,7 @@ if dein#load_state('~/.vim/dein/.')
   call dein#save_state()
 endif
 
-"もし、未インストールのプラグインがあった場合、インストール
+"もし、未インストールのプラグインがあった場合はインストール
 if dein#check_install()
   call dein#install()
 endif
