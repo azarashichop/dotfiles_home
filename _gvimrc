@@ -1,0 +1,79 @@
+"###############################################################################
+"gui-vim用設定
+"###############################################################################
+
+"Light-Line用設定
+set ambiwidth=double
+
+"マウスを無効にする
+set mouse=""
+
+"フォント設定
+set guifont=Rictyplain_NF:h16:cSHIFTJIS
+
+"レンダリング設定
+set renderoptions=type:directx,renmode:5
+
+"透過設定
+gui
+set transparency=255
+
+"クリップボードとヤンクバッファを共用する。
+set clipboard=unnamed
+
+"エラートーンを無効化する
+set visualbell t_vb=
+
+"ツールバーを非表示にする
+set guioptions-=T
+set guioptions-=m
+
+"タブ表示をvimと同じにする
+set guioptions-=e
+
+"スクロールバーを非表示にする
+set guioptions-=r
+set guioptions-=R
+set guioptions-=b
+
+
+"プリンタ用のフォント設定
+set printfont=Ricty_Writing:h12:cSHIFTJIS
+
+"IMEの有効／無効でカーソル色を変える
+"半角：グレー、全角：ダークレッド
+"*hi Cursor guiの反転を判断する
+
+augroup ColorSchemeHook
+  autocmd!
+  autocmd ColorScheme * call s:IMCursorColor()
+augroup END
+
+function! s:IMCursorColor()
+if(synIDattr(synIDtrans(hlID("Cursor")), "reverse"))
+  "hi Cursor gui => reverse
+  highlight Cursor guifg=Gray guibg=NONE
+  highlight CursorIM guifg=Darkred guibg=NONE
+else
+  "hi Cursor => normal
+  highlight Cursor guifg=NONE guibg=Gray
+  highlight CursorIM guifg=NONE guibg=Darkred
+endif
+endfunction
+
+"gui-vim用のbackground、カラースキーム設定
+set background=dark
+color gruvbox
+
+"vim-indent-guidesの設定
+  let g:indent_guides_enable_on_vim_startup=0
+  let g:indent_guides_start_level=1
+  let g:indent_guides_space_guides=1
+  let g:indent_guides_guide_size=2
+  let g:indent_guides_auto_colors=0
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=DarkSlateBlue
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=LightSlateGray
+  let g:indent_guides_color_change_percent = 30
+
+"起動時に全画面にする
+autocmd GUIEnter * simalt ~x
